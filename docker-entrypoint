@@ -10,12 +10,12 @@ if [ -z "$PRIVATE_KEY" ]; then
 	exit 1
 fi
 
-# disable strict host checking
-echo -e "Host *\n  StrictHostKeyChecking no" > $HOME/.ssh/config
-
 # add private key
 mkdir -p $HOME/.ssh
 echo "$(echo $PRIVATE_KEY | base64 -d)" > $HOME/.ssh/id_rsa
 chmod 600 $HOME/.ssh/id_rsa
+
+# disable strict host checking
+echo -e "Host *\n  StrictHostKeyChecking no" > $HOME/.ssh/config
 
 /usr/local/bin/php /home/deploy/.composer/vendor/bin/dep "$@"

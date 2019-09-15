@@ -1,6 +1,6 @@
 | build status | tag | image | from |
 | ------------ | --- | ----- | :---- |
-| [![Build Status](https://travis-ci.org/jexperton/deployer.svg?branch=master)](https://travis-ci.org/jexperton/deployer) | ```6``` | [Dockerfile](https://github.com/jexperton/deployer/blob/6) | [jexperton/7.2-cli](https://github.com/jexperton/php/blob/7.2-cli/Dockerfile) |
+| [![Build Status](https://travis-ci.org/jexperton/deployer.svg?branch=6)](https://travis-ci.org/jexperton/deployer) | ```6``` | [Dockerfile](https://github.com/jexperton/deployer/blob/6) | [jexperton/7.2-cli](https://github.com/jexperton/php/blob/7.2-cli/Dockerfile) |
 
 ## Usage
 

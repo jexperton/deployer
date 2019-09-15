@@ -12,9 +12,7 @@ RUN apk add --update --no-cache $RUNTIME_DEPS \
     && su - -c "/usr/local/bin/php /usr/bin/composer global require deployer/deployer" deploy \
     && rm -rf /var/cache/apk/*
 
-COPY docker-entrypoint /usr/bin/docker-entrypoint 
-
-RUN ln -s /usr/local/bin/docker-entrypoint /usr/bin/docker-entrypoint 
+COPY docker-entrypoint /usr/local/bin/docker-entrypoint 
 
 ENTRYPOINT ["docker-entrypoint"]
 
