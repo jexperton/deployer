@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+if [ -z "$PRIVATE_KEY" ]; then
+	echo "Private key is missing"
+    echo "You must use an environment variable to add one:"
+	echo ""
+    echo 'PRIVATE_KEY="$(openssl rsa -in $HOME/.ssh/id_rsa | base64 -w 0)'
+	echo 'docker run -e PRIVATE_KEY=\"$PRIVATE_KEY\"'
+	echo ""
+	echo "Value must be a base64 encoded string"
+	exit 1
+fi
+
+# disable strict host checking
+echo -e "Host *\n  StrictHostKeyChecking no" > $HOME/.ssh/config
+
+# add private key
+mkdir -p $HOME/.ssh
+echo "$(echo $PRIVATE_KEY | base64 -d)" > $HOME/.ssh/id_rsa
+chmod 600 $HOME/.ssh/id_rsa
+
+/usr/local/bin/php /home/deploy/.composer/vendor/bin/dep "$@"
