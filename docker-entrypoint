@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
+mkdir -p $HOME/.ssh
+
 if [ -z "$PRIVATE_KEY" ]; then
-	echo "No private key found, you can use an environment variable to add one:"
-	echo ""
+    echo "No private key found, you can use an environment variable to add one:"
+    echo ""
     echo 'PRIVATE_KEY="$(openssl rsa -in $HOME/.ssh/id_rsa | base64 -w 0)'
-	echo 'docker run -e PRIVATE_KEY=\"$PRIVATE_KEY\"'
-	echo ""
-	echo "Value must be a base64 encoded string"
+    echo 'docker run -e PRIVATE_KEY=\"$PRIVATE_KEY\"'
+    echo ""
+    echo "Value must be a base64 encoded string"
+    echo ""
 else
-	# add private key
-	mkdir -p $HOME/.ssh
-	echo "$(echo $PRIVATE_KEY | base64 -d)" > $HOME/.ssh/id_rsa
-	chmod 600 $HOME/.ssh/id_rsa
+    # add private key
+    echo "$(echo $PRIVATE_KEY | base64 -d)" > $HOME/.ssh/id_rsa
+    chmod 600 $HOME/.ssh/id_rsa
 fi
 
 # disable strict host checking
